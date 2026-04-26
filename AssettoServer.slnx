@@ -8,6 +8,7 @@
   <Project Path="FastLaneUtils\FastLaneUtils.csproj" />
   <Project Path="FastTravelPlugin\FastTravelPlugin.csproj" />
   <Project Path="GeoIPPlugin\GeoIPPlugin.csproj" />
+  <Project Path="LeaderboardPlugin\LeaderboardPlugin.csproj" />
   <Project Path="LiveWeatherPlugin\LiveWeatherPlugin.csproj" />
   <Project Path="RaceChallengePlugin\RaceChallengePlugin.csproj" />
   <Project Path="RandomWeatherPlugin\RandomWeatherPlugin.csproj" />
