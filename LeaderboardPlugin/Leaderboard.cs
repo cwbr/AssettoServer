@@ -112,13 +112,24 @@ public class Leaderboard : BackgroundService
         var lapTime = args.Packet.LapTime;
         var cuts = args.Packet.Cuts;
 
+        Log.Debug("LeaderboardPlugin: raw lap event from {Name} — {LapTime}ms, cuts={Cuts}",
+            sender.Name, lapTime, cuts);
+
         // Filter obviously invalid laps
         if (lapTime < _config.MinLapTimeSec * 1000)
+        {
+            Log.Debug("LeaderboardPlugin: discarding lap from {Name} — {LapTime}ms below minimum {Min}ms",
+                sender.Name, lapTime, _config.MinLapTimeSec * 1000);
             return;
+        }
 
         bool valid = cuts == 0;
         if (_config.ValidLapsOnly && !valid)
+        {
+            Log.Debug("LeaderboardPlugin: discarding invalid lap from {Name} — {Cuts} cuts",
+                sender.Name, cuts);
             return;
+        }
 
         // Collect sectors and reset for next lap
         uint[]? sectors = null;
@@ -147,6 +158,9 @@ public class Leaderboard : BackgroundService
             Grip = args.Packet.TrackGrip,
             SessionType = sessionType
         };
+
+        Log.Information("LeaderboardPlugin: lap completed by {Name} — {LapTime}ms, cuts={Cuts}, valid={Valid}, car={Car}, track={Track}",
+            sender.Name, lapTime, cuts, valid, sender.EntryCar.Model, _serverConfig.Server.Track);
 
         // Non-blocking enqueue
         if (!_sendQueue.Writer.TryWrite(payload))
