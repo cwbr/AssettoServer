@@ -54,4 +54,22 @@ public class LapPayload
 
     [JsonPropertyName("session_type")]
     public string SessionType { get; set; } = "";
+
+    [JsonPropertyName("abs_level")]
+    public byte? AbsLevel { get; set; }
+
+    [JsonPropertyName("tc_level")]
+    public byte? TcLevel { get; set; }
+
+    [JsonPropertyName("stability_control")]
+    public float? StabilityControl { get; set; }
+
+    [JsonPropertyName("auto_shifting")]
+    public bool? AutoShifting { get; set; }
+
+    [JsonPropertyName("input_method")]
+    public byte? InputMethod { get; set; }
+
+    [JsonPropertyName("tyre_compound")]
+    public byte? TyreCompound { get; set; }
 }

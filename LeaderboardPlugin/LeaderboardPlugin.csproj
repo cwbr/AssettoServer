@@ -27,4 +27,8 @@
       </ProjectReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="lua\**" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+
 </Project>
